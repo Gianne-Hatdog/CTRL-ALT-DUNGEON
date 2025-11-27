@@ -244,7 +244,7 @@ public class BattleSimulator {
 
     // Level Up System
     private static void levelUp(Player player, int level) {
-        System.out.println("\n*** LEVEL UP! You are now leve
+        System.out.println("\n*** LEVEL UP! You are now level " + level + "! ***"
         if (player instanceof Warrior) {
             player.setHealth(player.getHealth() + 10);
             player.setAttackDamage(player.getAttackDamage() + 3);
