@@ -5,6 +5,32 @@ public class BattleSimulator {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        // Start Menu
+        System.out.println("=== CTRL + ALT + Dungeon ===");
+        System.out.println("1. Start Game")
+        System.out.println("2. Exit");
+
+
+        int menuChoice = 0;
+        while (true) {
+            System.out.print("Choose: ");
+            try {
+                menuChoice = scanner.nextInt();
+                scanner.nextLine(); 
+                if (menuChoice == 1 || menuChoice == 2) break;
+                else System.out.println("Invalid choice! Enter 1 or 2.");
+            } catch (Exception e) {
+                System.out.println("Invalid input! Enter a number.");
+                scanner.nextLine(); // clear invalid input
+            }
+        }
+
+        if (menuChoice == 2) {
+    System.out.println("Exiting... Goodbye!");
+    return; // stops main, game won't start
+        }
+
+        
         boolean playing = true;
 
         while (playing) {
