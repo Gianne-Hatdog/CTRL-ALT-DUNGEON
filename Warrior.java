@@ -3,7 +3,7 @@ public class Warrior extends Player {
     private int maxEnergy;
 
     public Warrior(String name) {
-        super(name, 120, 30, 15);
+        super(name, 120, 30, 15); // Base stats
         this.energy = 100;
         this.maxEnergy = 100;
     }
@@ -13,27 +13,29 @@ public class Warrior extends Player {
 
     @Override
     public void attack(Character target) {
+        // Normal attack if enough energy
         if (energy >= 10) {
             System.out.println(this.getName() + " slashes " + target.getName());
             target.takeDamage(this.getAttackDamage());
             energy -= 10;
         } else {
+            // Weak attack if exhausted
             System.out.println(this.getName() + " has no energy! Uses weak attack.");
             int weakDamage = Math.max(0, this.getAttackDamage() - 10);
             target.takeDamage(weakDamage);
         }
 
-        // Energy regeneration
+        // Regenerate energy each turn
         if (energy < maxEnergy) {
             energy += 10;
-        if (energy > maxEnergy) energy = maxEnergy;
-
+            if (energy > maxEnergy) energy = maxEnergy;
         }
     }
-}
 
     @Override
     public boolean specialAttack(Character target) {
+
+        // Whirlwind Attack requires 20 energy
         if (energy >= 20) {
             System.out.println(this.getName() + " performs Whirlwind Attack!");
             target.takeDamage(this.getAttackDamage() + 15);
@@ -45,8 +47,9 @@ public class Warrior extends Player {
         }
     }
 
+    // Called during level up
     public void levelUpEnergy() {
-        maxEnergy += 20;
-        energy = maxEnergy;
+        maxEnergy += 20; // Increase energy cap
+        energy = maxEnergy; // Restore full energy
     }
 }
