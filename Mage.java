@@ -1,12 +1,15 @@
 public class Mage extends Player {
     private int mana;
+    private int maxMana;
 
     public Mage(String name) {
-        super(name, 50, 50, 10);
+        super(name, 100, 50, 10);
         this.mana = 100;
+        this.maxMana = 100;
     }
 
     public int getMana() { return mana; }
+    public int getMaxMana() { return maxMana; }
 
     @Override
     public void attack(Character target) {
@@ -20,10 +23,10 @@ public class Mage extends Player {
             target.takeDamage(weakDamage);
         }
 
-        // Mana regeneration
-        if (mana < 100) {
+        // Mana regen
+        if (mana < maxMana) {
             mana += 20;
-            if (mana > 100) mana = 100;
+            if (mana > maxMana) mana = maxMana;
         }
     }
 
@@ -38,5 +41,11 @@ public class Mage extends Player {
             System.out.println(this.getName() + " doesn't have enough mana for special attack!");
             return false;
         }
+    }
+
+    
+    public void levelUpMana() {
+        maxMana += 20;  
+        mana = maxMana;  
     }
 }
