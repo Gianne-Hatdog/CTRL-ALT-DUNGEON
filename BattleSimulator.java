@@ -28,13 +28,14 @@ public class BattleSimulator {
 
     // --------------------- START MENU ---------------------
     private static void showStartMenu(Scanner scanner) {
+        // Main menu
         System.out.println("=== CTRL + ALT + Dungeon ===");
         System.out.println("1. Start Game");
         System.out.println("2. Exit");
 
         int menuChoice = 0;
         while (true) {
-            System.out.print("Choose: ");
+            System.out.print("Choose: ");  // Choose between starting the game and exiting
             try {
                 menuChoice = scanner.nextInt();
                 scanner.nextLine();
@@ -42,6 +43,7 @@ public class BattleSimulator {
                 else if (menuChoice == 2) {
                     System.out.println("Exiting... Goodbye!");
                     System.exit(0);             // End program
+                    // Error Handling
                 } else {
                     System.out.println("Invalid choice! Enter 1 or 2.");
                 }
@@ -54,10 +56,11 @@ public class BattleSimulator {
 
     // --------------------- PLAYER CREATION ---------------------
     private static Player createPlayer(Scanner scanner) {
-        System.out.print("\nYou have forgotten your name...\nEnter a name (leave blank for 'Player'): ");
+        System.out.print("\nYou woke up in an unknown place...\nYour head hurts...\nYou have forgotten your name...\nEnter a name (leave blank for 'Player'): ");
         String name = scanner.nextLine().trim();
         if (name.isEmpty()) name = "Player";    // Default name
 
+        // Choosing the players class
         System.out.println("\nIn front of you lies a STAFF and a SWORD.");
         System.out.println("Which will you pick?");
         System.out.println("1. Staff (Mage)");
@@ -155,7 +158,7 @@ public class BattleSimulator {
         System.out.println("\nYou enter the boss chamber...");
         Monster boss = new Monster("Dungeon Lord", 250, 35, 10); // Boss stats
 
-        boolean won = runBattle(player, boss, scanner);
+        boolean won = runBattle(player, boss, scanner); 
 
         if (won) {
             System.out.println("\n===== VICTORY! =====");
